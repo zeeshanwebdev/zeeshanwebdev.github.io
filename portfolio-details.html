@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Web Doc - lets build your bussiness</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta property="og:image"
+          content="https://res.cloudinary.com/dkrwyqqlw/image/upload/v1655926614/webdoc/img/zee-bg.jpg" />
+
+    <!-- Favicons -->
+    <!-- <a target="_blank" href="https://icons8.com/icon/krnLM6prdE53/website">website</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+     -->
+    <link href="https://res.cloudinary.com/dkrwyqqlw/image/upload/v1655926600/webdoc/img/favicon/responsive.png" rel="icon">
+    <link href="https://res.cloudinary.com/dkrwyqqlw/image/upload/v1655926600/webdoc/img/favicon/responsive.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <!-- Template Main CSS File -->
+    <!-- <link href="~/assets/css/style.min.css" rel="stylesheet"> -->
+    <link href="./content/assets/css/style.min.css" rel="stylesheet">
+
+    <style>
+        .contact .php-email-form button[type=button], #hero #downloadbtn {
+            background: #0563bb;
+            border: 0;
+            padding: 10px 35px;
+            color: #fff;
+            transition: 0.4s;
+            border-radius: 50px;
+        }
+    </style>
+    <!-- =======================================================
+    * Template Name: MyResume - v4.7.0
+    * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+<body>
+    <main id="main">
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div id="projectImages" class="swiper-wrapper align-items-center">
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="portfolio-info">
+                            <h3 id="projectName"></h3>
+                            <ul>
+                                <li><strong>Role</strong>: <span id="projectCategory"></span></li>
+                                <li><strong>Client</strong>: <span id="projectClient"></span></li>
+                                <li><strong>Project URL</strong>: <a href="#" id="projectUrl" target="_blank"></a></li>
+                            </ul>
+                        </div>
+                        <div class="portfolio-description">
+                            <h2 id="projectInfoTitle"></h2>
+                            <p id="projectInfo"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Details Section -->
+
+    </main><!-- End #main -->
+    <script src="./content/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="./content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./content/assets/js/site.min.js"></script>
+    <script type="text/javascript">
+        let getProjectImages = (projectImages) => {
+            var imageContent = '';
+
+            var ROOT = 'https://res.cloudinary.com/dkrwyqqlw/image/upload/';
+            //var imagePath = ROOT + '/assets/img/portfolio/';
+            for (var i = 0; i < projectImages.length; i++) {
+                var imageFullPath = ROOT + projectImages[i];
+                imageContent += '<div class="swiper-slide">';
+                imageContent += '<img src="' + imageFullPath + ' "alt="">';
+                imageContent += '</div>';
+            }
+            var projectImagesEle = document.getElementById('projectImages');
+            projectImagesEle.innerHTML = imageContent;
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var projectName = urlParams.get('projectname');
+
+        debugger;
+        if (projectName !== '' && projectName !== null && projectName != undefined) {
+            var project = portfolioData.find(p => p.projectName.toLowerCase().trim() == projectName.toLowerCase().trim());
+            if (project !== '' && project !== null && project != undefined) {
+                getProjectImages(project.projectImages);
+                document.getElementById('projectName').textContent += project.projectName;
+                document.getElementById('projectCategory').textContent += project.projectCategory;
+                document.getElementById('projectClient').textContent += project.projectClient;
+                document.getElementById('projectInfoTitle').textContent += project.projectInfoTitle;
+                document.getElementById('projectInfo').textContent += project.projectInfo;
+
+                var projUrl = document.getElementById('projectUrl');
+                projUrl.textContent += project.projectUrl;
+                projUrl.setAttribute('href', project.projectAbsoluteUrl);
+            }
+        }
+    </script>
+</body >
+</html >
